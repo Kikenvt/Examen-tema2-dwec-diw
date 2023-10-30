@@ -8,13 +8,13 @@ window.addEventListener("load", sigIn)
 // Creamos las variable de scope global
 
 let saldo = 1000
-let PIN_CORRECTO = "1234"
+let pinCorrecto = "1234"
 let intentosRestantes = 3
 
 // Enlazamos las las partes del template con JS
 
 const deposit = document.getElementById("deposit")
-const withraw = document.getElementById("withraw")
+const withdraw = document.getElementById("withdraw")
 const transfer = document.getElementById("transfer")
 const changePin = document.getElementById("change-pswd")
 const exit = document.getElementById("exit")
@@ -23,7 +23,7 @@ const historyTemplate = document.getElementById("history")
 
 // Aqui añadiremos los listener para los eventos.
 deposit.addEventListener("click", depositMoney)
-withraw.addEventListener("click", withrawMoney)
+withdraw.addEventListener("click", withdrawMoney)
 transfer.addEventListener("click", transferMoney)
 changePin.addEventListener("click", changePswd)
 exit.addEventListener("click", () => {
@@ -58,15 +58,18 @@ function depositMoney() {
 
 // 2- Retirar
 
-function withrawMoney() {
-  const withrawAmount = parseFloat(
+function withdrawMoney() {
+  const withdrawAmount = parseFloat(
     prompt(`Por favor, indique la cantidad que desea retirar: `)
   )
-  if (isNaN(withrawAmount) || withrawAmount <= 0 || withrawAmount > saldo) {
+  if (isNaN(withdrawAmount) || withdrawAmount <= 0 || withdrawAmount > saldo) {
     alert("Saldo insuficiente o cántidad no válida")
   } else {
-    saldo -= withrawAmount
-    alert(`Se ha retirado al cantidad de ${withrawAmount} €`)
+    saldo -= withdrawAmount
+    alert(`Se ha retirado al cantidad de ${withdrawAmount} €`)
+    const li = document.createElement("li")
+    li.innerText = `RETIRADO - ${withdrawAmount}`
+    historyTemplate.appendChild(li)
     refreshAccount()
   }
 }
@@ -75,49 +78,49 @@ function withrawMoney() {
 
 function transferMoney() {
   const transferAmount = parseFloat(prompt(`Ingrese la cantidad a transferir`))
-  
+
   if (isNaN(transferAmount) || transferAmount > saldo) {
     alert(`Importe no valido`)
-    
   } else {
     const iban = prompt(`Ingrese el IBAN de destino`)
-    if (!validateIban(iban)){
-    alert("IBAN no valido")
-    return
-  }
+    if (!validateIban(iban)) {
+      alert("IBAN no valido")
+      return
+    }
     saldo -= transferAmount
     alert(`Se han transferido ${transferAmount} € a la cuenta ${iban}`)
+    const li = document.createElement("li")
+    li.innerText = `Transferencia de ${transferAmount} a la cuenta ${iban}`
+    historyTemplate.appendChild(li)
     refreshAccount()
-  
-}
+  }
 }
 
 // Funcion para iniciar sesion
 
 function sigIn() {
   let pin = prompt("Ingrese su pin: ")
-  while (pin != PIN_CORRECTO && intentosRestantes > 1) {
+  while (pin != pinCorrecto && intentosRestantes > 1) {
     intentosRestantes--
     alert(`PIN incorecto. Intetos restantes ${intentosRestantes}`)
     pin = prompt("Ingrese su pin")
   }
-    if (pin === PIN_CORRECTO) {
-      alert("Bienvenido")
-      refreshAccount()
-    } else {
-        alert("Cajero BLOQUEADO")
-      window.location.replace("/templates/cajeroBloqueado.html")
-    }
-  
+  if (pin === pinCorrecto) {
+    alert("Bienvenido")
+    refreshAccount()
+  } else {
+    alert("Cajero BLOQUEADO")
+    window.location.replace("/templates/cajeroBloqueado.html")
+  }
 }
 
 // Cambiar PIN
 
 function changePswd() {
   const pinActual = prompt("Ingrese su pin actual")
-  if (pinActual === PIN_CORRECTO) {
-    PIN_CORRECTO = prompt("Ingrese su nuevo PIN")
-    alert(`Su nuevo pin es ${PIN_CORRECTO}`)
+  if (pinActual === pinCorrecto) {
+    pinCorrecto = prompt("Ingrese su nuevo PIN")
+    alert(`Su nuevo pin es ${pinCorrecto}`)
   } else {
     alert("PIN INCORRECTO")
   }

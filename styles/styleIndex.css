@@ -55,6 +55,7 @@ a{
 
 .result{
     font-size: 1.2em;
+    color:#d3dfdf;
 }
 
 .history{
@@ -65,9 +66,14 @@ a{
     margin: 0 auto;  
 }
 
+.history ul{
+    padding: 0;
+}
 
 .history li{
-    padding: 0px;
+    border: 1px solid;
+    padding: 20px;
+    
     text-align: center;
     list-style: none;
 }
