@@ -3,6 +3,8 @@
  **GitHub**:
  */
 
+// Cargarémos la funcion de inicio de sesion al cargar la página
+
 window.addEventListener("load", sigIn)
 
 // Creamos las variable de scope global
@@ -22,6 +24,7 @@ const resultTemplate = document.getElementById("result")
 const historyTemplate = document.getElementById("history")
 
 // Aqui añadiremos los listener para los eventos.
+
 deposit.addEventListener("click", depositMoney)
 withdraw.addEventListener("click", withdrawMoney)
 transfer.addEventListener("click", transferMoney)
@@ -77,9 +80,9 @@ function withdrawMoney() {
 // 3- Transferir
 
 function transferMoney() {
-  const transferAmount = parseFloat(prompt(`Ingrese la cantidad a transferir`))
+  const transferedAmount = parseFloat(prompt(`Ingrese la cantidad a transferir`))
 
-  if (isNaN(transferAmount) || transferAmount > saldo) {
+  if (isNaN(transferedAmount) || transferedAmount > saldo) {
     alert(`Importe no valido`)
   } else {
     const iban = prompt(`Ingrese el IBAN de destino`)
@@ -87,10 +90,10 @@ function transferMoney() {
       alert("IBAN no valido")
       return
     }
-    saldo -= transferAmount
-    alert(`Se han transferido ${transferAmount} € a la cuenta ${iban}`)
+    saldo -= transferedAmount
+    alert(`Se han transferido ${transferedAmount} € a la cuenta ${iban}`)
     const li = document.createElement("li")
-    li.innerText = `Transferencia de ${transferAmount} a la cuenta ${iban}`
+    li.innerText = `Transferencia de ${transferedAmount} a la cuenta ${iban}`
     historyTemplate.appendChild(li)
     refreshAccount()
   }

@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Kanit';
-    src: url("/assets/fonts/Kanit/Kanit-Regular.ttf") format('truetype');
+    src: url("../assets/fonts/Kanit/Kanit-Regular.ttf") format('truetype');
 }
 
 body{
@@ -43,7 +43,8 @@ a{
     max-width: 800px;
     min-width: 600px;
     text-align: center;
-    background-color: rgb(8, 53, 115);
+    background: rgb(105,105,212);
+    background: radial-gradient(circle, rgba(105,105,212,1) 17%, rgba(8,53,115,1) 100%);
     border-radius: 5px;
     box-shadow: (0, 0, 0, 0.3);
     padding: 10px 160px;
