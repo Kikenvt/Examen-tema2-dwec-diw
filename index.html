@@ -11,14 +11,22 @@
     <section>
         <main class="container">
             <h1>Cajero automático</h1>
-            <button id="deposit">Depositar Dinero</button>
-            <button id="withraw">Retirar Dinero</button>
-            <button id="transfer">Transferir Dinero</button>
-            <button id="change-pswd">Cambiar Contraseña</button>
-            <button id="exit">Salir</button>
-            <div id="">
+            <ul class="menu">
+            <li id="deposit"><a href="#" >Depositar Dinero</a></li>
+            <li id="withraw"><a href="#" >Retirar Dinero</a></li>
+            <li id="transfer"><a href="#" >Transferir Dinero</a></li>
+            <li id="change-pswd"><a href="#" >Cambiar Contraseña</a></li>
+            <li id="exit"><a href="#" >Salir</a></li>
+            </ul>
+            <div class="result"">
                 <p>Su saldo acutal es: <span id="result"></span> €</p>
             </div>
+        </main>
+    </section>
+    <section>
+        <main class="history">
+            <h1>Historial</h1>
+            <ul class="history" id="history"></ul>
         </main>
     </section>
     
