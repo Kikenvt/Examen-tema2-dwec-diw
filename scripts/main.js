@@ -21,7 +21,7 @@ const resultTemplate = document.getElementById("result")
 // Aqui añadiremos los listener para los eventos.
 deposit.addEventListener("click", depositMoney)
 withraw.addEventListener("click", withrawMoney)
-
+transfer.addEventListener("click", transferMoney)
 
 // Creamos las funciones:
 
@@ -55,6 +55,22 @@ function withrawMoney(){
     }else{
         saldo -= withrawAmount
         alert(`Se ha retirado al cantidad de ${withrawAmount} €`)
+        refreshAccount()
+    }
+}
+
+// 3- Transferir
+
+function transferMoney(){
+    const transferAmount = parseFloat(prompt(`Ingrese la cantidad a transferir`))
+    const iban = prompt(`Ingrese el IBAN de destino`)
+    if(isNaN(transferAmount) || transferAmount >saldo ){
+
+        alert(`Importe no valido`)
+
+    }else{
+        saldo -= transferAmount
+        alert(`Se han transferido ${transferAmount} € a la cuenta ${iban}`)
         refreshAccount()
     }
 }
