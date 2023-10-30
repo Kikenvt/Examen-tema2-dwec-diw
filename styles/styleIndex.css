@@ -43,7 +43,7 @@ a{
     max-width: 800px;
     min-width: 600px;
     text-align: center;
-    background: rgb(105,105,212);
+    background: #6969d4;
     background: radial-gradient(circle, rgba(105,105,212,1) 17%, rgba(8,53,115,1) 100%);
     border-radius: 5px;
     box-shadow: (0, 0, 0, 0.3);
@@ -64,7 +64,8 @@ a{
     min-width: 600px;
     align-items: center;
     text-align: center;
-    margin: 0 auto;  
+    margin: 0 auto;
+    color: #f0f8ff;  
 }
 
 .history ul{
@@ -74,7 +75,7 @@ a{
 .history li{
     border: 1px solid;
     padding: 20px;
-    
+    background-color: #2b2bd2;
     text-align: center;
     list-style: none;
 }
