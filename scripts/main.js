@@ -89,13 +89,14 @@ function transferMoney() {
     if (!validateIban(iban)) {
       alert("IBAN no valido")
       return
-    }
+    }else{
     saldo -= transferedAmount
     alert(`Se han transferido ${transferedAmount} € a la cuenta ${iban}`)
     const li = document.createElement("li")
     li.innerText = `Transferencia de ${transferedAmount} a la cuenta ${iban}`
     historyTemplate.appendChild(li)
     refreshAccount()
+    }
   }
 }
 
@@ -132,5 +133,5 @@ function changePswd() {
 // Expresion regular para el IBAN
 function validateIban(iban) {
   let expresionRegular = /^(ES\d{22})$/
-  return validateIban.test(iban)
+  return expresionRegular.test(iban)
 }
